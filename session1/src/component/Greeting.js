@@ -1,7 +1,5 @@
 //please provide your first name and last name
 
-import { use } from "react";
-
 function Greeting() {
   const age = 10; // number
   const fName = "reza"; //string
@@ -11,11 +9,19 @@ function Greeting() {
   const a = 5;
   const b = 10;
   const user = { username: "elena", city: "Montreal" };
+  const value = [10, 20, 30];
   //Template String -> `` backtick
 
   // I would like to call a method in Math to create a random number
   // if the number is more than 0.5 then in the <p> show you are lucky.
   //otherwise show you are not
+  let message = "you are not lucky";
+  let config = { color: "red", border: "10px solid blue" };
+
+  if (Math.random() > 0.5) {
+    message = "you are lucky";
+    config = { color: "red", border: "10px solid green" };
+  }
 
   return (
     <div>
@@ -32,6 +38,16 @@ function Greeting() {
         {user.username} lives in {user.city}
         {JSON.stringify(user)}
       </p>
+      <p>
+        {message} {new Date().toLocaleTimeString()}{" "}
+      </p>
+      <p>{value}</p>
+      <input
+        id="number-input"
+        type="number"
+        minLength={4}
+        style={config}
+      ></input>
     </div>
   );
 }

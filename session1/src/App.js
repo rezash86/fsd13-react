@@ -1,4 +1,7 @@
+import Welcome from "./component/Component1";
+import { Header, Footer as FooterLayout } from "./component/Layout";
 import Greeting from "./component/Greeting";
+import Info, { Button } from "./component/UI";
 
 function App() {
   //JSX examples
@@ -25,9 +28,13 @@ function App() {
       </div>
       <div>{message}</div> */}
       <Greeting />
-      <Greeting />
-      <Greeting />
-      <Greeting2 />
+      <Welcome />
+      <Header />
+      <FooterLayout />
+      <Info />
+      <Button />
+
+      {/* <Greeting2 /> */}
     </>
   );
 }
