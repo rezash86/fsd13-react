@@ -5,6 +5,7 @@ function App() {
   const name = "Elena";
   const fName = "Reza";
   const lName = "shalchian";
+
   const message = (
     <h1>
       Hello, {fName} {lName}
@@ -26,9 +27,13 @@ function App() {
       <Greeting />
       <Greeting />
       <Greeting />
-      <Greeting />
+      <Greeting2 />
     </>
   );
+}
+
+function Greeting2() {
+  return <div>Hello World 2 !!</div>;
 }
 
 export default App;
