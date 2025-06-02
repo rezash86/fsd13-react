@@ -2,6 +2,7 @@ import Welcome from "./component/Component1";
 import { Header, Footer as FooterLayout } from "./component/Layout";
 import Greeting from "./component/Greeting";
 import Info, { Button } from "./component/UI";
+import GreetingByName from "./component/PropsComponent";
 
 function App() {
   //JSX examples
@@ -27,13 +28,14 @@ function App() {
         <header>{message} </header>
       </div>
       <div>{message}</div> */}
-      <Greeting />
+      {/* <Greeting />
       <Welcome />
       <Header />
       <FooterLayout />
       <Info />
-      <Button />
-
+      <Button /> */}
+      <GreetingByName name="reza" prenome="reza" />
+      <GreetingByName name="Jack" />
       {/* <Greeting2 /> */}
     </>
   );
