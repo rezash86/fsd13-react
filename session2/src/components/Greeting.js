@@ -1,4 +1,4 @@
-export default function Greeting({ isLoggedIn, hasUnread }) {
+export default function Greeting({ isLoggedIn, hasUnread, isAdmin }) {
   //   if (isLoggedIn) {
   //     return <h2>Welcome back</h2>;
   //   } else {
@@ -11,6 +11,9 @@ export default function Greeting({ isLoggedIn, hasUnread }) {
       {/* <h2>{isLoggedIn ? "Welcome back" : "Please log in"}</h2> */}
       <h2>{hasUnread && <p>You have unread messages</p>}</h2>
       <p>{hasUnread ? "You have unread messages" : ""}</p>
+      <h2>
+        {isAdmin && <p style={{ color: "red" }}>you have admin priviliages</p>}
+      </h2>
     </div>
   );
 }

@@ -1,5 +1,7 @@
 import FruitList from "./components/FruitList";
 import Greeting from "./components/Greeting";
+import Counter from "./components/Counter";
+import { ClickExample, InputExample } from "./components/Events";
 
 function App() {
   const students = [
@@ -41,7 +43,10 @@ function App() {
           ))}
         </ul>
       </div> */}
-      <Greeting isLoggedIn={true} hasUnread={true} />
+      <Counter />
+      <ClickExample />
+      <InputExample />
+      {/* <Greeting isLoggedIn={true} hasUnread={true} isAdmin={false} /> */}
     </div>
   );
 }
