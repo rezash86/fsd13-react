@@ -29,3 +29,24 @@ export function InputExample() {
     </>
   );
 }
+
+export function ToggleMessage() {
+  const [visible, setVisible] = useState(true);
+
+  function handleToggle() {
+    // if (visible) {
+    //   setVisible(false);
+    // } else {
+    //   setVisible(true);
+    // }
+
+    setVisible(!visible); //toggling
+  }
+
+  return (
+    <div>
+      <button onClick={handleToggle}>{visible ? "Hide" : "show"}</button>
+      {visible && <p>This is a toggle messsage</p>}
+    </div>
+  );
+}
