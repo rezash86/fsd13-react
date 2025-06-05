@@ -1,46 +1,73 @@
 import { useState } from "react";
-import AnimalShow from "./AnimalShow";
-import "./App.css";
-
-function getRandomAnimal() {
-  //this one will give a random animal
-  const animals = ["bird", "cat", "cow", "dog", "gator", "horse"];
-  const randomIndex = Math.floor(Math.random() * animals.length); //gives me between 0 to 6
-
-  return animals[randomIndex];
-}
-
-function App() {
-  const [animals, setAnimals] = useState([]);
-
-  //you can have seperate components for each part
-  // 1- the button can be a component
-  // 2- the list of animals can also be a seperate animals
-  //having a bunch of animals that are created randomly
-
-  const handleClick = () => {
-    //I have already one array and I want to have a new array that
-    //has a new field and override the new array to the previous one
-    var newArray = [...animals, getRandomAnimal()];
-    setAnimals(newArray); //spread operator -> have the list and add one element
-  };
-
-  // const renderedAnimals = animals.map((anm) => {
-  //   <AnimalShow type={anm}></AnimalShow>;
-  // });
-
-  const renderedAnimals = animals.map((anm, index) => (
-    <AnimalShow type={anm} key={index}></AnimalShow>
-  ));
-
-  console.log(renderedAnimals);
-
+export default function app() {
   return (
-    <div className="app">
-      <button onClick={handleClick}>Add Animal</button>
-      <div className="animal-list">{renderedAnimals}</div>
+    <div>
+      <ContactForm />
+      <SignUpForm />
     </div>
   );
 }
 
-export default App;
+function ContactForm() {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (o) => {
+    o.preventDefault(); //keep the value and prevent from default behaviour
+    alert("the user enter " + email);
+    // alert("the user enter " + {email}); // This is Wrong
+  };
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        value={email}
+        // onChange={(e) => setEmail(e.target.value)}
+        onChange={handleEmail}
+      ></input>
+    </form>
+  );
+}
+
+function SignUpForm() {
+  // I am using a wrapper object that has control on
+  //name and password
+  const [form, setForm] = useState[{ name: "", password: "" }];
+
+  function handleChange(e) {
+    //you need to provide the NEW object
+    //{ name : "x", password : "444444"}
+    // keep the older changes -> spread - operator
+    // keep the old values but change the key/values that needs to be changed !!!
+    // let newForm = {};
+    // if (e.target.name === "name") {
+    //   newForm = {
+    //     name: e.target.value,
+    //   };
+    // }
+    // if (e.target.name === "password") {
+    //   newForm = {
+    //     password: e.target.value,
+    //   };
+    // }
+    // setForm(newForm);
+
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  return (
+    <form>
+      <input name="name" onChange={handleChange} value={form.name}></input>
+      <input
+        name="password"
+        type="password"
+        onChange={handleChange}
+        value={form.password}
+      ></input>
+    </form>
+  );
+}
