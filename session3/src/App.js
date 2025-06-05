@@ -2,7 +2,7 @@ import { useState } from "react";
 export default function app() {
   return (
     <div>
-      <ContactForm />
+      {/* <ContactForm /> */}
       <SignUpForm />
     </div>
   );
@@ -36,7 +36,7 @@ function ContactForm() {
 function SignUpForm() {
   // I am using a wrapper object that has control on
   //name and password
-  const [form, setForm] = useState[{ name: "", password: "" }];
+  const [form, setForm] = useState({ name: "", password: "" });
 
   function handleChange(e) {
     //you need to provide the NEW object
@@ -55,8 +55,9 @@ function SignUpForm() {
     //   };
     // }
     // setForm(newForm);
-
+    console.log(e);
     setForm({ ...form, [e.target.name]: e.target.value });
+    console.log(form);
   }
 
   return (
