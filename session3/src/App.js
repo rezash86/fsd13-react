@@ -3,7 +3,8 @@ export default function app() {
   return (
     <div>
       {/* <ContactForm /> */}
-      <SignUpForm />
+      {/* <SignUpForm /> */}
+      <Registration />
     </div>
   );
 }
@@ -70,5 +71,65 @@ function SignUpForm() {
         value={form.password}
       ></input>
     </form>
+  );
+}
+
+function Registration() {
+  const [formData, setFormData] = useState({
+    fName: "",
+    lName: "",
+    phone: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData({ ...formData, [name]: value }); // shortest implementation
+  };
+
+  return (
+    <div>
+      <h2>Live Preview from</h2>
+      <form>
+        <div>
+          <label>First Name :</label>
+          <input
+            name="fName"
+            type="text"
+            value={formData.fname}
+            onChange={handleChange}
+            placeholder="Please enter firstname"
+          ></input>
+        </div>
+        <div>
+          <label>Last Name :</label>
+          <input
+            name="lName"
+            value={formData.lname}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div>
+          <label>Phone :</label>
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          ></input>
+        </div>
+      </form>
+
+      <h3>Preview</h3>
+      <p>
+        <strong>First Name : {formData.fName}</strong>
+      </p>
+      <p>
+        <strong>Last name : {formData.lName}</strong>
+      </p>
+      <p>
+        <strong>phone : {formData.phone}</strong>
+      </p>
+    </div>
   );
 }
