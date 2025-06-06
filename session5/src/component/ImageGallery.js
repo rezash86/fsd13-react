@@ -50,15 +50,21 @@ export default function ImageGallery() {
 
   return (
     <div className="p-4">
-      <Modal
-        image={selectedImage}
-        onClose={() => setSelectedImage(null)}
-      ></Modal>
+      <Modal image={selectedImage} onClose={() => setSelectedImage(null)} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {images.map((img) => (
-          <div key={img.id} onClick={() => setSelectedImage(img)}>
-            <img src={img.urls.small} alt={img.alt_description}></img>
+          <div
+            key={img.id}
+            className="border rounded shadow cursor-pointer hover:shadow-lg"
+            onClick={() => setSelectedImage(img)}
+          >
+            <img
+              src={img.urls.small}
+              alt={img.alt_description}
+              className="w-full"
+            />
+            <p className="p-2 text-sm">{img.alt_description || "Untitled"}</p>
           </div>
         ))}
       </div>
