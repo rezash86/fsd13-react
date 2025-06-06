@@ -2,12 +2,29 @@ import { useState } from "react";
 
 function DummyApi() {
   const [formData, setFormData] = useState({ name: "", email: "" });
-  const [errors, setErrors] = useState({});
+  const [validationErrors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" });
+    setErrors({ ...validationErrors, [e.target.name]: "" }); //will remove the errors in Errors
   };
+
+  //custom validation
+  //you check if you have empty space
+  function validateForm() {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is Required";
+    }
+    //REGEX check
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is Required";
+    }
+
+    //more logic to control the sql injection
+
+    return newErrors;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,16 +39,31 @@ function DummyApi() {
     //   .then((res) => res.json())
     //   .then((data) => console.log(data));
 
+    //before calling the api
+    //I will add some validation
+    const newErrors = validateForm();
+    //if it is not empty => setErrors to show the messages
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return; // it doesn't call the api
+    }
+
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        // Authorization: "Client-ID Osb-HMD1IfrwsmGAXQO6kSMvHOmaRm23iK3fbke0JjM",
+      },
       body: JSON.stringify(formData), //provide form values
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        setFormData({ name: "", email: "" });
+        setErrors({});
+      })
       .catch((error) => {
         console.log(error);
-        setErrors();
       });
   };
 
@@ -49,18 +81,22 @@ function DummyApi() {
       >
         <input
           name="name"
-          // required={true}
+          required
           value={formData.name}
           onChange={handleChange}
         ></input>
-        {errors.name && <span style={{ color: "red" }}>{errors.name}</span>}
+        {validationErrors.name && (
+          <span style={{ color: "red" }}>{validationErrors.name}</span>
+        )}
         <input
           name="email"
-          // required={true}
+          required
           value={formData.email}
           onChange={handleChange}
         ></input>
-        {errors.email && <span style={{ color: "red" }}>{errors.email}</span>}
+        {validationErrors.email && (
+          <span style={{ color: "red" }}>{validationErrors.email}</span>
+        )}
         <button type="submit">Submit</button>
       </form>
     </div>
