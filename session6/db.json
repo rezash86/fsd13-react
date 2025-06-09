@@ -1,47 +1,9 @@
 {
   "books": [
     {
-      "id": "1eb8",
-      "title": "My book"
-    },
-    {
-      "id": "88f2",
-      "title": "My book 1"
-    },
-    {
-      "id": "98be",
-      "title": "title 2",
-      "image": "https://picsum.photos/seed/378/200/300"
-    },
-    {
-      "id": "dabf",
-      "title": "fffff",
-      "image": "https://picsum.photos/seed/96/200/300"
-    },
-    {
-      "id": "e771",
-      "title": "by lift",
+      "id": "3747",
+      "title": "edited book 1",
       "image": "https://picsum.photos/seed/422/200/300"
-    },
-    {
-      "id": "6e43",
-      "title": "new book",
-      "image": "https://picsum.photos/seed/555/200/300"
-    },
-    {
-      "id": "bd6f",
-      "title": "sasdfsdf",
-      "image": "https://picsum.photos/seed/61/200/300"
-    },
-    {
-      "id": "8b2a",
-      "title": "rrrr",
-      "image": "https://picsum.photos/seed/94/200/300"
-    },
-    {
-      "id": "d46e",
-      "title": "tttt",
-      "image": "https://picsum.photos/seed/122/200/300"
     }
   ],
   "authors": []

@@ -16,7 +16,24 @@ function App() {
     setBooks(res.data);
   };
 
-  async function createBook(title) {
+  const deleteOneBook = async (id) => {
+    await axios.delete(`${API_URL}/${id}`);
+    // we will use filter function in the array
+    setBooks(books.filter((book) => book.id !== id));
+  };
+
+  const editOneBook = async (id, newTitle) => {
+    const orig = books.find((book) => book.id === id);
+    console.log(orig[0]);
+    console.log(id);
+    const res = await axios.put(`${API_URL}/${id}`, {
+      ...orig,
+      title: newTitle,
+    });
+    console.log(res);
+    setBooks(books.map((bk) => (bk.id === id ? res.data : bk)));
+  };
+  const createBook = async (title) => {
     // I have the title of the book and with that title I want to submit it.
 
     //with title what can I do ?
@@ -25,11 +42,11 @@ function App() {
       Math.random() * 1000
     )}/200/300`;
     const res = await axios.post(API_URL, { title, image });
-    console.log(res);
+
     //I have the newly added Book
     //I need to add the newly added to the list of books
-    setBooks(...books, res.data);
-  }
+    setBooks([...books, res.data]);
+  };
 
   useEffect(() => {
     fetchBooks();
@@ -56,7 +73,11 @@ function App() {
       
       */}
       <BookCreate createNewBook={createBook} />
-      <BookList books={books} />
+      <BookList
+        books={books}
+        deleteBook={deleteOneBook}
+        editBook={editOneBook}
+      />
     </div>
   );
 }
