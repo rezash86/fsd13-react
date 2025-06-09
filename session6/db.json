@@ -4,6 +4,11 @@
       "id": "3747",
       "title": "edited book 1",
       "image": "https://picsum.photos/seed/422/200/300"
+    },
+    {
+      "id": "d879",
+      "title": "new book edited 2",
+      "image": "https://picsum.photos/seed/879/200/300"
     }
   ],
   "authors": []

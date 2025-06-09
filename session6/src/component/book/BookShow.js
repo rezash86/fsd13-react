@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BooksContext } from "../../context/BooksContext";
 
-export default function BookShow({ book, deleteBook, editBook }) {
+export default function BookShow({ book }) {
   const [editing, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(book.title); // the initial value of new title is the old title of the props book
+
+  const { editBook, deleteBook } = useContext(BooksContext) ?? {};
 
   const handleEdit = () => {
     // the id and new title needs to be passed to the parents
